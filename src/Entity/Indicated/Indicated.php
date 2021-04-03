@@ -11,16 +11,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Indicated entity.
  *
- * @property int       $id
- * @property Category  $category
- * @property string    $name
+ * @property int      $id
+ * @property Category $category
+ * @property string   $name
  *
  * @ORM\Table(
  *     name="indicated",
@@ -60,12 +60,12 @@ class Indicated
      * @Groups({"show", "list"})
      *
      * @Assert\NotBlank(message="model.not_blank.category")
-     * 
+     *
      * @ORM\ManyToMany(
-     *      targetEntity="App\Entity\Category\Category",
-     *      inversedBy="indicated",
-     *      cascade={"persist", "refresh"},
-     *      fetch="EXTRA_LAZY"
+     *     targetEntity="App\Entity\Category\Category",
+     *     inversedBy="indicated",
+     *     cascade={"persist", "refresh"},
+     *     fetch="EXTRA_LAZY"
      * )
      * @ORM\JoinTable(name="category_indicated")
      * @MaxDepth(1)

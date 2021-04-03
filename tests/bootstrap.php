@@ -15,9 +15,9 @@ if (file_exists(dirname(__DIR__).'/config/bootstrap.php')) {
     (new Dotenv())->usePutenv(true)->loadEnv(dirname(__DIR__).'/.env.test');
 }
 
-/** 
+/**
  * For load database schema, migrations and fixtures and use transaction on tests.
- */ 
+ */
 function bootstrap(): void
 {
     $appEnv = 'test';
@@ -69,10 +69,10 @@ function bootstrap(): void
         $application->run(
             new ArrayInput(
                 [
-                'doctrine:database:create',
-                '--env' => 'test',
-                '--no-interaction' => null,
-                '--no-debug' => null,
+                    'doctrine:database:create',
+                    '--env' => 'test',
+                    '--no-interaction' => null,
+                    '--no-debug' => null,
                 ]
             )
         );

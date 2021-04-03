@@ -7,9 +7,9 @@ namespace App\Form\Indicated;
 use App\Entity\Category\Category;
 use App\Entity\Indicated\Indicated;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class IndicatedType extends AbstractType
 {
@@ -26,8 +26,7 @@ class IndicatedType extends AbstractType
                 'documentation' => [
                     'description' => 'Name of indicated.',
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

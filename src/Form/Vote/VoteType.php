@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Form\Vote;
 
-use App\Entity\Vote;
 use App\Entity\Category\Category;
 use App\Entity\Indicated\Indicated;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\Vote;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class VoteType extends AbstractType
 {
@@ -34,8 +34,7 @@ class VoteType extends AbstractType
                 'documentation' => [
                     'description' => 'Rating of vote.',
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

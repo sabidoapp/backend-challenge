@@ -97,7 +97,7 @@ Será avaliado a qualidade do código implementado e sua cobertura. Os pontos ma
 * não se limite em usar quantas libs/tools opensource, ou mesmo em como persistir os dados
 
 
-## Consifderações finais
+## Considerações finais
 
 Você não precisa de uma camada de visualização para concluir o desafio.
 

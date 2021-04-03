@@ -29,8 +29,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         "engine": "InnoDB"
  *     },
  *     indexes={
- *         @ORM\Index(name="category_name",columns={"name"}),
- *         @ORM\Index(name="category_abrev",columns={"abrev"}),
+ *         @ORM\Index(name="category_name", columns={"name"}),
+ *         @ORM\Index(name="category_abrev", columns={"abrev"}),
  *     }
  * )
  *
@@ -66,10 +66,10 @@ class Category
      * @var \Doctrine\ORM\PersistentCollection
      *
      * @ORM\ManyToMany(
-     *      targetEntity="App\Entity\Indicated\Indicated",
-     *      cascade={"persist", "refresh"},
-     *      mappedBy="categories",
-     *      fetch="EXTRA_LAZY"
+     *     targetEntity="App\Entity\Indicated\Indicated",
+     *     cascade={"persist", "refresh"},
+     *     mappedBy="categories",
+     *     fetch="EXTRA_LAZY"
      * )
      * @ORM\OrderBy({"id": "desc"})
      */

@@ -6,8 +6,8 @@ namespace App\Form\Category;
 
 use App\Entity\Category\Category;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoryType extends AbstractType
@@ -24,8 +24,7 @@ class CategoryType extends AbstractType
                 'documentation' => [
                     'description' => 'Abbreviation of category.',
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -35,7 +34,7 @@ class CategoryType extends AbstractType
             'allow_extra_fields' => true,
         ]);
     }
-    
+
     /**
      * Get block prefix.
      */

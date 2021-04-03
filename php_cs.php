@@ -2,7 +2,7 @@
 
 /**
  * @codeCoverageIgnoreStart
- */ 
+ */
 $finder = PhpCsFixer\Finder::create()
     ->exclude([
         'var',
