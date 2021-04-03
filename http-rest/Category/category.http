@@ -1,0 +1,28 @@
+### list category
+GET {{host}}/category
+    ?XDEBUG_SESSION
+
+### create a new category
+POST {{host}}/category
+    ?XDEBUG_SESSION
+
+{
+  "name": "lorem ipsum",
+  "abrev": "lipsum"
+}
+
+### update a category
+PATCH {{host}}/category/{{category_id}}
+    ?XDEBUG_SESSION
+
+{
+  "abrev": "lorip"
+}
+
+### get a single category
+GET {{host}}/category/{{category_id}}
+    ?XDEBUG_SESSION
+
+### delete a category
+DELETE {{host}}/category/{{category_id}}
+    ?XDEBUG_SESSION

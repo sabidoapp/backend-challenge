@@ -1,0 +1,13 @@
+{
+    "rest-client.defaultHeaders": {
+        "Content-Type": "application/json"
+    },
+    "rest-client.environmentVariables": {
+        "local": {
+            "host": "http://localhost",
+            "category_id": "1",
+            "indicated_id": "1",
+            "vote_id": "1"
+        }
+    }
+}

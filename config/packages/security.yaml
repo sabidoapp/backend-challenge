@@ -1,0 +1,8 @@
+security:
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+        api:
+            security: false
+            pattern: ^/

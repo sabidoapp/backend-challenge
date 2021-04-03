@@ -1,0 +1,24 @@
+{
+    "request": {
+        "name": "Santos",
+        "state": 2
+    },
+    "response": {
+        "data": {
+            "Vote": {
+                "id": 1,
+                "state": {
+                    "id": 2,
+                    "abrev": "sp",
+                    "name": "São Paulo"
+                },
+                "name": "Santos"
+            }
+        },
+        "messages": {
+            "success": [
+                "Registro atualizado."
+            ]
+        }
+    }
+}

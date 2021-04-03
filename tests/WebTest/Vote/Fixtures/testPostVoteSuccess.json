@@ -1,0 +1,26 @@
+{
+    "request": {
+        "rating": 4,
+        "categories": [
+            1
+        ],
+        "indicated": 1
+    },
+    "response": {
+        "data": {
+            "vote": {
+                "id": 1,
+                "rating": 4,
+                "categories": [
+                    1
+                ],
+                "indicated": 1
+            }
+        },
+        "messages": {
+            "success": [
+                "Registro criado."
+            ]
+        }
+    }
+}

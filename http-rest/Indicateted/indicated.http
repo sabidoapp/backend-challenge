@@ -1,0 +1,30 @@
+### list indicated
+GET {{host}}/indicated
+    ?XDEBUG_SESSION
+
+### create a new indicated
+POST {{host}}/indicated
+    ?XDEBUG_SESSION
+
+{
+  "name": "Jack Daniels",
+  "categories": [
+      1
+  ]
+}
+
+### update a indicated
+PATCH {{host}}/indicated/{{indicated_id}}
+    ?XDEBUG_SESSION
+
+{
+  "name": "Starbucks Coffee"
+}
+
+### get a single indicated
+GET {{host}}/indicated/{{indicated_id}}
+    ?XDEBUG_SESSION
+
+### delete a indicated
+DELETE {{host}}/indicated/{{indicated_id}}
+    ?XDEBUG_SESSION

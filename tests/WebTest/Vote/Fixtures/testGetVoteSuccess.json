@@ -1,0 +1,21 @@
+{
+    "response": {
+        "data": {
+            "vote": {
+                "id": 1,
+                "categories": [
+                    {
+                        "id": 1,
+                        "abrev": "BMUS",
+                        "name": "Best music"
+                    }
+                ],
+                "indicated": {
+                    "id": 1,
+                    "name": "Alfa Mist"
+                },
+                "rating": 5
+            }
+        }
+    }
+}

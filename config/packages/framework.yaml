@@ -1,0 +1,17 @@
+# see https://symfony.com/doc/current/reference/configuration/framework.html
+framework:
+    secret: '%env(APP_SECRET)%'
+    csrf_protection: false
+    http_method_override: false
+    session: ~
+    esi: { enabled: false }
+    fragments: true
+    php_errors:
+        log: true
+    router:
+        strict_requirements: ~
+    serializer:
+        enabled: false
+        enable_annotations: false
+    profiler:
+        enabled: '%kernel.debug%'

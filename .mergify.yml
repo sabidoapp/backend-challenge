@@ -1,0 +1,66 @@
+pull_request_rules:
+  # https://doc.mergify.io/
+  # Regra para mergear PRs com master
+  - name: automate merge workflow
+    conditions:
+      - base=master
+      - "#approved-reviews-by>=1" # Needs at least 2 approved reviews
+      - "#changes-requested-reviews-by=0" # Needs to have 0 change requests
+      - -conflict # Cant be conflicting with base branch
+      - label!=Status / Delayed merge
+      - -status-neutral~=^(ci/circleci).*$ # Cant have a in-progress ci check
+      - -status-failure~=^(ci/circleci).*$ # Cant have a failed ci check
+      - status-success~=^(ci/circleci).*$ # Needs all REQUIRED ci checks
+      - title~=^(?!.*WIP).*$ # Checks if PR title has uppercase WIP
+    actions:
+      merge:
+        method: merge # Other options are squash and rebase
+        strict: smart+fasttrack # Will queue updates with base branch before merging
+        strict_method: merge # Will merge base branch into this one. Other option is rebase
+
+  # Regra para mergear release
+  - name: automate release workflow
+    conditions:
+      - base=release
+      - head=master
+      - -conflict # Cant be conflicting with base branch
+      - label!=Status / Delayed merge
+    actions:
+      review:
+        type: APPROVE
+        message: "Automated approval"
+      merge:
+        method: merge
+        strict: false # Will not update release with main before merge
+
+  # Regra para pre-aprovar dependencias que não tem conflito
+  #- name: automate dependabot workflow
+  #  conditions:
+  #    - base=master
+  #    - head~=dependabot*
+  #    - -conflict # Cant be conflicting with base branch
+  #    - -status-neutral~=^(ci/circleci).*$ # Cant have a in-progress ci check
+  #    - -status-failure~=^(ci/circleci).*$ # Cant have a failed ci check
+  #    - status-success~=^(ci/circleci).*$ # Needs all REQUIRED ci checks
+  #  actions:
+  #    review:
+  #      type: APPROVE
+  #      message: "Automated approval"
+
+  # Regra para avisar que houve conflitos
+  - name: ask to resolve conflict
+    conditions:
+      - conflict
+      - -merged
+    actions:
+      comment:
+        message: "@{{author}}, essa PR possui conflitos com o branch base. Por favor, resolver."
+
+  # Regra pra fazer assign automático
+  - name: assign author to PR
+    conditions:
+      - -merged
+    actions:
+      assign:
+        users:
+          - '{{author}}'

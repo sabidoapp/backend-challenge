@@ -1,0 +1,20 @@
+{
+    "request": {
+        "name": "Lecture prometheus",
+        "abrev": "letheus"
+    },
+    "response": {
+        "data": {
+            "category": {
+                "id": 2,
+                "abrev": "Lecture prometheus",
+                "name": "letheus"
+            }
+        },
+        "messages": {
+            "success": [
+                "Registro criado."
+            ]
+        }
+    }
+}

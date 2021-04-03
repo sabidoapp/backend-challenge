@@ -1,0 +1,19 @@
+{
+    "request": {
+        "name": "Resende"
+    },
+    "response": {
+        "data": {
+            "Vote": {
+                "id": null,
+                "state": [],
+                "name": "Resende"
+            }
+        },
+        "messages": {
+            "error": [
+                "A categoria não pode ficar em branco."
+            ]
+        }
+    }
+}

@@ -1,0 +1,3 @@
+### index endpoint
+GET {{host}}
+    ?XDEBUG_SESSION

@@ -1,0 +1,120 @@
+{
+    "name": "omrqs/challenge",
+    "description": "",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.4",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "doctrine/migrations": "^3.1",
+        "sensio/framework-extra-bundle": "^5.5",
+        "symfony/dotenv": "*",
+        "symfony/flex": "*",
+        "symfony/form": "5.2",
+        "symfony/framework-bundle": "*",
+        "symfony/monolog-bundle": "*",
+        "symfony/orm-pack": "*",
+        "symfony/security-bundle": "*",
+        "symfony/serializer": "*",
+        "symfony/serializer-pack": "*",
+        "symfony/translation": "*",
+        "symfony/validator": "*",
+        "symfony/yaml": "*"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "dama/doctrine-test-bundle": "^6.5",
+        "phpunit/phpunit": "^9",
+        "sci3ma/symfony-grumphp": "^3.0",
+        "symfony/web-profiler-bundle": "*",
+        "symfony/debug-bundle": "*",
+        "symfony/stopwatch": "*",
+        "symfony/var-dumper": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php73": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "security-checker security:check": "script",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "create-db": [
+            "php bin/console doctrine:database:create --if-not-exists",
+            "php bin/console doctrine:migration:migrate --allow-no-migration -n"
+        ],
+        "load-fixtures-db": [
+            "php bin/console doctrine:fixtures:load -n"
+        ],
+        "presetup": [
+            "php -r \"file_exists('.env') || copy('.env.dist', '.env');\""
+        ],
+        "setup": [
+            "@presetup",
+            "@composer i --no-interaction --no-progress --no-scripts",
+            "@create-db",
+            "vendor/bin/grumphp git:init"
+        ],
+        "grum": [
+            "php vendor/bin/grumphp run"
+        ],
+        "format": [
+            "php vendor/bin/grumphp run --tasks=phpcs"
+        ],
+        "stan": [
+            "php vendor/bin/grumphp run --tasks=phpstan"
+        ],
+        "test": [
+            "php vendor/bin/phpunit -c phpunit.xml.dist --debug"
+        ],
+        "server-dump": [
+            "php bin/console server:dump"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true,
+            "require": "5.2"
+        },
+        "incenteev-parameters": {
+            "keep-outdated": true,
+            "file": ".env"
+        },
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        }
+    }
+}

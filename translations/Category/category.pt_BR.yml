@@ -1,0 +1,15 @@
+model:
+    not_blank:
+        name: O nome não pode ficar em branco.
+        abrev: A sigla não pode ficar em branco.
+
+controller:
+    success:
+        new: Registro criado.
+        update: Registro atualizado.
+        delete: Registro removido.
+    error:
+        delete: Falhou ao remover o registro.
+unique:
+    name: Nome  já existe
+    abrev: Sigla já existe

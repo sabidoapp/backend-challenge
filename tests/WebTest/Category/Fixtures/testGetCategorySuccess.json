@@ -1,0 +1,14 @@
+{
+    "request": {
+        "id": 1
+    },
+    "response": {
+        "data": {
+            "category": {
+                "id": 1,
+                "abrev": "BMUS",
+                "name": "Best music"
+            }
+        }
+    }
+}

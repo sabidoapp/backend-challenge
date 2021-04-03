@@ -1,0 +1,8 @@
+{% 
+set error = { 
+    'code': '403',
+    'message': 'Forbbiden, forget it'
+}
+%}
+
+{{ error|json_encode(constant('JSON_PRETTY_PRINT')) }}

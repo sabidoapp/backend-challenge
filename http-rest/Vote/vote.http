@@ -1,0 +1,19 @@
+### list vote
+GET {{host}}/vote
+    ?XDEBUG_SESSION
+
+### create a new vote
+POST {{host}}/vote
+    ?XDEBUG_SESSION
+
+{
+  "indicated": 1,
+  "categories": [
+      1
+  ],
+  "rating": 5
+}
+
+### get a single vote
+GET {{host}}/vote/{{vote_id}}
+    ?XDEBUG_SESSION

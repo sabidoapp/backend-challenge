@@ -1,0 +1,15 @@
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver: '%env(resolve:DB_DRIVER)%'
+                server_version: '%env(resolve:DB_VERSION)%'
+                charset: utf8
+                url: '%env(resolve:DATABASE_URL)%'
+                persistent: false
+    orm:
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default

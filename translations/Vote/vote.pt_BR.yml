@@ -1,0 +1,13 @@
+model:
+    not_blank:
+        categories: A categoria não pode ficar em branco.
+        indicated: O indicado não pode ficar em branco.
+        rating: Informe sua avaliação
+
+controller:
+    success:
+        new: Registro criado.
+        update: Registro atualizado.
+        delete: Registro removido.
+    error:
+        delete: Falhou ao remover o registro.

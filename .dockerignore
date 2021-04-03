@@ -1,0 +1,11 @@
+.env
+.git*
+*.dist
+.editorconfig
+Dockerfile
+auth.json
+docs
+vendor/*
+tests/*
+var/*
+bin/*phpunit

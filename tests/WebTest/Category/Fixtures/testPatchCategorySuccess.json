@@ -1,0 +1,20 @@
+{
+    "request": {
+        "name": "Lorem Ipsum",
+        "abrev": "lipsum"
+    },
+    "response": {
+        "data": {
+            "category": {
+                "id": 1,
+                "abrev": "lipsum",
+                "name": "Lorem Ipsum"
+            }
+        },
+        "messages": {
+            "success": [
+                "Registro atualizado."
+            ]
+        }
+    }
+}

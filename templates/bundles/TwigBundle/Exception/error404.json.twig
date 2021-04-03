@@ -1,0 +1,8 @@
+{% 
+set error = { 
+    'code': '404',
+    'message': 'Oh no! Endpoint not found'
+}
+%}
+
+{{ error|json_encode(constant('JSON_PRETTY_PRINT')) }}

@@ -1,0 +1,15 @@
+monolog:
+    channels: ['main','console','deprecation']
+    handlers:
+        main:
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: debug
+            channels: ['!event']
+        console:
+            type: console
+            channels: ['!event']
+        deprecation:
+           type: stream
+           path: '%kernel.logs_dir%/deprecations.log'
+           channels: [deprecation]

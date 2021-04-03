@@ -1,0 +1,15 @@
+{
+    "response": {
+        "data": {
+            "Vote": {
+                "id": 1,
+                "state": {
+                    "id": 1,
+                    "abrev": "rj",
+                    "name": "Rio de Janeiro"
+                },
+                "name": "Rio de Janeiro"
+            }
+        }
+    }
+}

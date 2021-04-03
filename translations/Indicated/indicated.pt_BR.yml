@@ -1,0 +1,15 @@
+model:
+    not_blank:
+        categories: A categoria não pode ficar em branco.
+        name: O nome não pode ficar em branco.
+
+controller:
+    success:
+        new: Registro criado.
+        update: Registro atualizado.
+        delete: Registro removido.
+    error:
+        delete: Falhou ao remover o registro.
+unique:
+    name: Indicado já existe
+        

@@ -1,0 +1,24 @@
+{
+    "request": {
+        "name": "Resende",
+        "state": 1
+    },
+    "response": {
+        "data": {
+            "Vote": {
+                "id": 4,
+                "state": {
+                    "id": 1,
+                    "abrev": "rj",
+                    "name": "Rio de Janeiro"
+                },
+                "name": "Resende"
+            }
+        },
+        "messages": {
+            "success": [
+                "Registro criado."
+            ]
+        }
+    }
+}

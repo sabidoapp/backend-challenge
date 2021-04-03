@@ -1,0 +1,19 @@
+{
+    "request": {
+        "name": "Sittus"
+    },
+    "response": {
+        "data": {
+            "category": {
+                "id": null,
+                "abrev": null,
+                "name": "Sittus"
+            }
+        },
+        "messages": {
+            "error": [
+                "A sigla não pode ficar em branco."
+            ]
+        }
+    }
+}

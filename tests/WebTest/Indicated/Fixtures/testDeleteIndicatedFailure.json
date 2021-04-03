@@ -1,0 +1,12 @@
+{
+    "request": {
+        "id": 10
+    },
+    "response": {
+        "messages": {
+            "success": [
+                "Registro removido."
+            ]
+        }
+    }
+}

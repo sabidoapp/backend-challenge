@@ -1,0 +1,7 @@
+{% 
+set error = { 
+    'message': 'Sorry for this... something unexpected happened'
+}
+%}
+
+{{ error|json_encode(constant('JSON_PRETTY_PRINT')) }}

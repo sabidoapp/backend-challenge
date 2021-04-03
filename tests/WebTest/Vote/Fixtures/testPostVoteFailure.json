@@ -1,0 +1,21 @@
+{
+    "request": {
+        "rating": 3
+    },
+    "response": {
+        "data": {
+            "vote": {
+                "id": null,
+                "categories": [],
+                "indicated": null,
+                "rating": 3
+            }
+        },
+        "messages": {
+            "error": [
+                "A categoria não pode ficar em branco.",
+                "O indicado não pode ficar em branco."
+            ]
+        }
+    }
+}
