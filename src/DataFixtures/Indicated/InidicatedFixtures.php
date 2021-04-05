@@ -35,6 +35,7 @@ class InidicatedFixtures extends Fixture implements FixtureInterface, ContainerA
             $indicated = new Indicated();
             $indicated->name = $name;
             $indicated->addCategories(
+                /* @phpstan-ignore-next-line */
                 $this->getReference(
                     sprintf('category-%s', strtolower($category))
                 )

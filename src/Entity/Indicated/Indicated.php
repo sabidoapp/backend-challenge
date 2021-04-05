@@ -102,7 +102,7 @@ class Indicated
      */
     public function __toString(): string
     {
-        return $this->rating;
+        return $this->name;
     }
 
     /**

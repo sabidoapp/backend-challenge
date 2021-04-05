@@ -93,16 +93,12 @@ class IndicatedController extends BaseController
      */
     public function delete(Indicated $indicated): JsonResponse
     {
-        try {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($indicated);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($indicated);
+        $em->flush();
 
-            $this->addFlash('success', $this->trans('controller.success.delete', [], 'indicated'));
+        $this->addFlash('success', $this->trans('controller.success.delete', [], 'indicated'));
 
-            return $this->response([]);
-        } catch (\Throwable $e) {
-            return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
-        }
+        return $this->response([]);
     }
 }

@@ -93,16 +93,12 @@ class CategoryController extends BaseController
      */
     public function delete(Category $category): JsonResponse
     {
-        try {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($category);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
 
-            $this->addFlash('success', $this->trans('controller.success.delete', [], 'category'));
+        $this->addFlash('success', $this->trans('controller.success.delete', [], 'category'));
 
-            return $this->response([]);
-        } catch (\Throwable $e) {
-            return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
-        }
+        return $this->response([]);
     }
 }

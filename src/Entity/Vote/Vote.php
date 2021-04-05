@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @property int       $id
  * @property Category  $category
  * @property Indicated $indicated
- * @property int       $vote
+ * @property int       $rating
  *
  * @ORM\Table(
  *     name="vote",
@@ -94,12 +94,4 @@ class Vote
      * @ORM\Column(type="integer")
      */
     private int $rating = 0;
-
-    /**
-     * String.
-     */
-    public function __toString(): int
-    {
-        return $this->rating;
-    }
 }

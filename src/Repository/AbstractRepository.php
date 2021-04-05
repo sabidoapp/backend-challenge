@@ -17,6 +17,7 @@ abstract class AbstractRepository extends ServiceEntityRepository
      */
     public function __construct(ManagerRegistry $registry, string $entity)
     {
+        /* @phpstan-ignore-next-line */
         parent::__construct($registry, $entity);
     }
 }

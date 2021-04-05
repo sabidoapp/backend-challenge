@@ -25,7 +25,9 @@ class VoteFixtures extends Fixture implements FixtureInterface, ContainerAwareIn
     public function load(ObjectManager $manager): void
     {
         $vote = new Vote();
+        /* @phpstan-ignore-next-line */
         $vote->category = $this->getReference(sprintf('category-bmus'));
+        /* @phpstan-ignore-next-line */
         $vote->indicated = $this->getReference('indicated-alfa-mist-bmus');
         $vote->rating = 5;
         $manager->persist($vote);

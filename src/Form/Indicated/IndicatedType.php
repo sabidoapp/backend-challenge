@@ -8,6 +8,7 @@ use App\Entity\Category\Category;
 use App\Entity\Indicated\Indicated;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,7 +23,7 @@ class IndicatedType extends AbstractType
                     'description' => 'Category of vote.',
                 ],
             ])
-            ->add('name', StringType::class, [
+            ->add('name', TextType::class, [
                 'documentation' => [
                     'description' => 'Name of indicated.',
                 ],
