@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use Closure;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
@@ -12,17 +11,13 @@ use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class CustomSerializer implements SerializerInterface
 {
-    private static array $dates = [
-        'createdAt',
-        'updatedAt',
-    ];
-
     /**
      * {@inheritdoc}
      */
@@ -84,7 +79,10 @@ class CustomSerializer implements SerializerInterface
         );
 
         $serializer = new Serializer(
-            [$normalizer],
+            [
+                new DateTimeNormalizer(),
+                $normalizer,
+            ],
             [new JsonEncoder()]
         );
 
@@ -103,35 +101,6 @@ class CustomSerializer implements SerializerInterface
             AbstractObjectNormalizer::MAX_DEPTH_HANDLER => fn ($obj): int => $obj->id,
             // avoid circular reference on relationships.
             AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => fn ($obj): int => $obj->getId(),
-            // call normalizers for typed entries.
-            AbstractNormalizer::CALLBACKS => array_merge(
-                (array) array_combine(
-                    self::$dates,
-                    array_fill(0, count(self::$dates), self::callbackDate())
-                ),
-            ),
         ];
-    }
-
-    /**
-     * Callback object to normatize date objects into values. Rules by attribute.
-     */
-    private static function callbackDate(): Closure
-    {
-        return function ($value) {
-            if ($value instanceof \DateTime) {
-                return $value->format(\DateTime::ISO8601);
-            }
-
-            if ($value instanceof \DateTimeImmutable) {
-                return $value->format(\DateTime::ISO8601);
-            }
-
-            if (is_string($value)) {
-                return new \DateTime((string) strtotime($value));
-            }
-
-            return $value;
-        };
     }
 }
