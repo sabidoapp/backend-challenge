@@ -49,7 +49,8 @@ class CategoryController extends BaseController
                 ['show']
             );
         }
-            ($this->renderErrors())($form, 'category');
+        
+        $this->renderErrors($form, 'category');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
     }
@@ -83,7 +84,8 @@ class CategoryController extends BaseController
                 ['show']
             );
         }
-            ($this->renderErrors())($form, 'category');
+        
+        $this->renderErrors($form, 'category');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
     }

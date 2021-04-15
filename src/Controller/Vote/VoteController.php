@@ -49,7 +49,8 @@ class VoteController extends BaseController
                 ['show']
             );
         }
-            ($this->renderErrors())($form, 'vote');
+
+        $this->renderErrors($form, 'vote');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
     }

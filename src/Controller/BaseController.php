@@ -51,25 +51,23 @@ class BaseController extends AbstractController
     /**
      * Clousure to render form errors.
      */
-    protected function renderErrors(): Closure
+    protected function renderErrors(FormInterface $form, string $translatorDomain = 'main'): void
     {
-        return function (FormInterface $form, string $translatorDomain = 'main'): void {
-            foreach ($form->getErrors(true) as $error) {
-                if ($error instanceof FormError) {
-                    $cause = $error->getCause();
-                    if ($cause instanceof ConstraintViolationInterface) {
-                        $this->addFlash(
-                            'error',
-                            sprintf(
-                                '%s: [%s] %s',
-                                $cause->getPropertyPath(),
-                                implode(', ', array_values($error->getMessageParameters())),
-                                $this->trans($error->getMessage(), $error->getMessageParameters(), $translatorDomain)
-                            )
-                        );
-                    }
+        foreach ($form->getErrors(true) as $error) {
+            if ($error instanceof FormError) {
+                $cause = $error->getCause();
+                if ($cause instanceof ConstraintViolationInterface) {
+                    $this->addFlash(
+                        'error',
+                        sprintf(
+                            '%s: [%s] %s',
+                            $cause->getPropertyPath(),
+                            implode(', ', array_values($error->getMessageParameters())),
+                            $this->trans($error->getMessage(), $error->getMessageParameters(), $translatorDomain)
+                        )
+                    );
                 }
             }
-        };
+        }
     }
 }

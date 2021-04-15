@@ -49,7 +49,8 @@ class IndicatedController extends BaseController
                 ['show']
             );
         }
-            ($this->renderErrors())($form, 'indicated');
+        
+        $this->renderErrors($form, 'indicated');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
     }
@@ -83,7 +84,8 @@ class IndicatedController extends BaseController
                 ['show']
             );
         }
-            ($this->renderErrors())($form, 'indicated');
+        
+        $this->renderErrors($form, 'indicated');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
     }
