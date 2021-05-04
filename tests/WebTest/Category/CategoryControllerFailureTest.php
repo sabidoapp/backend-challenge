@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\WebTest\Category;
 
 use App\Tests\AbstractWebTest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class CategoryControllerFailureTest extends AbstractWebTest
 {
     /**
@@ -11,7 +17,7 @@ class CategoryControllerFailureTest extends AbstractWebTest
      */
     public function testPostCategoryFailure(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testPostCategoryFailure.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testPostCategoryFailure.json'), true);
 
         $this->client->xmlHttpRequest(
             'POST',
@@ -36,7 +42,7 @@ class CategoryControllerFailureTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data, 'messages' => $messages] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('category', $data);
         $this->assertArrayHasKey('id', $data['category']);
@@ -49,11 +55,13 @@ class CategoryControllerFailureTest extends AbstractWebTest
      */
     public function testDeleteCategoryFailure(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testDeleteCategoryFailure.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testDeleteCategoryFailure.json'), true);
 
         $this->client->xmlHttpRequest(
             'DELETE',
-            $this->router->generate('category_delete', ['id' => $mock['request']['id']]),
+            $this->router->generate('category_delete', [
+                'id' => $mock['request']['id'],
+            ]),
             [],
             []
         );

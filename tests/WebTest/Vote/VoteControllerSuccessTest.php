@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\WebTest\Vote;
 
 use App\Tests\AbstractWebTest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class VoteControllerSuccessTest extends AbstractWebTest
 {
     /**
@@ -39,7 +45,7 @@ class VoteControllerSuccessTest extends AbstractWebTest
      */
     public function testPostVoteSuccess(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testPostVoteSuccess.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testPostVoteSuccess.json'), true);
 
         $this->client->xmlHttpRequest(
             'POST',
@@ -64,7 +70,7 @@ class VoteControllerSuccessTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data, 'messages' => $messages] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('vote', $data);
         $this->assertArrayHasKey('id', $data['vote']);
@@ -76,11 +82,13 @@ class VoteControllerSuccessTest extends AbstractWebTest
      */
     public function testGetVoteSuccess(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testGetVoteSuccess.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testGetVoteSuccess.json'), true);
 
         $this->client->xmlHttpRequest(
             'GET',
-            $this->router->generate('vote_show', ['id' => $mock['request']['id']]),
+            $this->router->generate('vote_show', [
+                'id' => $mock['request']['id'],
+            ]),
             [],
             []
         );
@@ -99,7 +107,7 @@ class VoteControllerSuccessTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('id', $data['vote']);
     }

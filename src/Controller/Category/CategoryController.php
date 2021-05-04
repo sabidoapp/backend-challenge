@@ -23,7 +23,9 @@ class CategoryController extends BaseController
     public function index(CategoryRepository $categoryRepository): JsonResponse
     {
         return $this->response(
-            ['categories' => $categoryRepository->findAll()],
+            [
+                'categories' => $categoryRepository->findAll(),
+            ],
             ['list']
         );
     }
@@ -45,11 +47,13 @@ class CategoryController extends BaseController
             $this->addFlash('success', $this->trans('controller.success.new', [], 'category'));
 
             return $this->response(
-                ['category' => $category],
+                [
+                    'category' => $category,
+                ],
                 ['show']
             );
         }
-        
+
         $this->renderErrors($form, 'category');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
@@ -61,7 +65,9 @@ class CategoryController extends BaseController
     public function show(Category $category): JsonResponse
     {
         return $this->response(
-            ['category' => $category],
+            [
+                'category' => $category,
+            ],
             ['show', 'stats']
         );
     }
@@ -71,7 +77,9 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, Category $category): JsonResponse
     {
-        $form = $this->createForm(CategoryType::class, $category, ['method' => 'PATCH']);
+        $form = $this->createForm(CategoryType::class, $category, [
+            'method' => 'PATCH',
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -80,11 +88,13 @@ class CategoryController extends BaseController
             $this->addFlash('success', $this->trans('controller.success.update', [], 'category'));
 
             return $this->response(
-                ['category' => $category],
+                [
+                    'category' => $category,
+                ],
                 ['show']
             );
         }
-        
+
         $this->renderErrors($form, 'category');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);

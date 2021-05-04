@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\WebTest;
 
 use App\Tests\AbstractWebTest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class IndexControllerSuccessTest extends AbstractWebTest
 {
     /**

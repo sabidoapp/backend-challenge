@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\WebTest\Vote;
 
 use App\Tests\AbstractWebTest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class VoteControllerFailureTest extends AbstractWebTest
 {
     /**
@@ -11,7 +17,7 @@ class VoteControllerFailureTest extends AbstractWebTest
      */
     public function testPostVoteFailure(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testPostVoteFailure.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testPostVoteFailure.json'), true);
 
         $this->client->xmlHttpRequest(
             'POST',
@@ -36,7 +42,7 @@ class VoteControllerFailureTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data, 'messages' => $messages] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('vote', $data);
         $this->assertArrayHasKey('id', $data['vote']);

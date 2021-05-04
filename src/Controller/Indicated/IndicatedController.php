@@ -23,7 +23,9 @@ class IndicatedController extends BaseController
     public function index(IndicatedRepository $indicatedRepository): JsonResponse
     {
         return $this->response(
-            ['indicated' => $indicatedRepository->findAll()],
+            [
+                'indicated' => $indicatedRepository->findAll(),
+            ],
             ['list']
         );
     }
@@ -45,11 +47,13 @@ class IndicatedController extends BaseController
             $this->addFlash('success', $this->trans('controller.success.new', [], 'indicated'));
 
             return $this->response(
-                ['indicated' => $indicated],
+                [
+                    'indicated' => $indicated,
+                ],
                 ['show']
             );
         }
-        
+
         $this->renderErrors($form, 'indicated');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);
@@ -61,7 +65,9 @@ class IndicatedController extends BaseController
     public function show(Indicated $indicated): JsonResponse
     {
         return $this->response(
-            ['indicated' => $indicated],
+            [
+                'indicated' => $indicated,
+            ],
             ['show', 'stats']
         );
     }
@@ -71,7 +77,9 @@ class IndicatedController extends BaseController
      */
     public function update(Request $request, Indicated $indicated): JsonResponse
     {
-        $form = $this->createForm(IndicatedType::class, $indicated, ['method' => 'PATCH']);
+        $form = $this->createForm(IndicatedType::class, $indicated, [
+            'method' => 'PATCH',
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -80,11 +88,13 @@ class IndicatedController extends BaseController
             $this->addFlash('success', $this->trans('controller.success.update', [], 'indicated'));
 
             return $this->response(
-                ['indicated' => $indicated],
+                [
+                    'indicated' => $indicated,
+                ],
                 ['show']
             );
         }
-        
+
         $this->renderErrors($form, 'indicated');
 
         return $this->response([], [], JsonResponse::HTTP_BAD_REQUEST);

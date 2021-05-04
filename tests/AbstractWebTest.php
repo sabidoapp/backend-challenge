@@ -22,7 +22,7 @@ abstract class AbstractWebTest extends WebTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

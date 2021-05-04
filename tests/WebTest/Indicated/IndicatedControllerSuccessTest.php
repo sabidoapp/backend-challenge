@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\WebTest\Indicated;
 
 use App\Tests\AbstractWebTest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class IndicatedControllerSuccessTest extends AbstractWebTest
 {
     /**
@@ -39,7 +45,7 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
      */
     public function testPostIndicatedSuccess(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testPostIndicatedSuccess.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testPostIndicatedSuccess.json'), true);
 
         $this->client->xmlHttpRequest(
             'POST',
@@ -64,7 +70,7 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data, 'messages' => $messages] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('indicated', $data);
         $this->assertArrayHasKey('id', $data['indicated']);
@@ -76,11 +82,13 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
      */
     public function testGetIndicatedSuccess(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testGetIndicatedSuccess.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testGetIndicatedSuccess.json'), true);
 
         $this->client->xmlHttpRequest(
             'GET',
-            $this->router->generate('indicated_show', ['id' => $mock['request']['id']]),
+            $this->router->generate('indicated_show', [
+                'id' => $mock['request']['id'],
+            ]),
             [],
             []
         );
@@ -99,7 +107,7 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('id', $data['indicated']);
     }
@@ -109,11 +117,13 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
      */
     public function testPatchIndicatedSuccess(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testPatchIndicatedSuccess.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testPatchIndicatedSuccess.json'), true);
 
         $this->client->xmlHttpRequest(
             'PATCH',
-            $this->router->generate('indicated_update', ['id' => $mock['request']['id']]),
+            $this->router->generate('indicated_update', [
+                'id' => $mock['request']['id'],
+            ]),
             [],
             [],
             [],
@@ -134,7 +144,7 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data, 'messages' => $messages] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('name', $data['indicated']);
         $this->assertArrayHasKey('success', $messages);
@@ -145,11 +155,13 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
      */
     public function testDeleteIndicatedSuccess(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testDeleteIndicatedSuccess.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testDeleteIndicatedSuccess.json'), true);
 
         $this->client->xmlHttpRequest(
             'DELETE',
-            $this->router->generate('indicated_delete', ['id' => $mock['request']['id']]),
+            $this->router->generate('indicated_delete', [
+                'id' => $mock['request']['id'],
+            ]),
             [],
             []
         );
@@ -168,7 +180,7 @@ class IndicatedControllerSuccessTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['messages' => $messages] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('success', $messages);
     }

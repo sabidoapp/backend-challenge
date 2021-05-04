@@ -23,7 +23,9 @@ class VoteController extends BaseController
     public function index(VoteRepository $voteRepository): JsonResponse
     {
         return $this->response(
-            ['votes' => $voteRepository->findAll()],
+            [
+                'votes' => $voteRepository->findAll(),
+            ],
             ['list']
         );
     }
@@ -45,7 +47,9 @@ class VoteController extends BaseController
             $this->addFlash('success', $this->trans('controller.success.new', [], 'vote'));
 
             return $this->response(
-                ['vote' => $vote],
+                [
+                    'vote' => $vote,
+                ],
                 ['show']
             );
         }
@@ -61,7 +65,9 @@ class VoteController extends BaseController
     public function show(Vote $vote): JsonResponse
     {
         return $this->response(
-            ['vote' => $vote],
+            [
+                'vote' => $vote,
+            ],
             ['show']
         );
     }

@@ -24,7 +24,7 @@ class CorsSubscriber implements EventSubscriberInterface
     {
         $realMethod = $event->getRequest()->getRealMethod();
 
-        if (in_array($realMethod, [Request::METHOD_OPTIONS, Request::METHOD_HEAD])) {
+        if (in_array($realMethod, [Request::METHOD_OPTIONS, Request::METHOD_HEAD], true)) {
             $response = new JsonResponse();
             $response->setStatusCode(JsonResponse::HTTP_ACCEPTED);
 
@@ -48,7 +48,7 @@ class CorsSubscriber implements EventSubscriberInterface
         $response = $event->getResponse();
         $realMethod = $event->getRequest()->getRealMethod();
 
-        if (in_array($realMethod, [Request::METHOD_OPTIONS, Request::METHOD_HEAD])) {
+        if (in_array($realMethod, [Request::METHOD_OPTIONS, Request::METHOD_HEAD], true)) {
             $response = new JsonResponse();
             $realMethod = null;
         }

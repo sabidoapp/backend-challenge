@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\WebTest\Indicated;
 
 use App\Tests\AbstractWebTest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class IndicatedControllerFailureTest extends AbstractWebTest
 {
     /**
@@ -11,7 +17,7 @@ class IndicatedControllerFailureTest extends AbstractWebTest
      */
     public function testPostIndicatedFailure(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testPostIndicatedFailure.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testPostIndicatedFailure.json'), true);
 
         $this->client->xmlHttpRequest(
             'POST',
@@ -36,7 +42,7 @@ class IndicatedControllerFailureTest extends AbstractWebTest
         $respBody = json_decode($response->getContent(), true);
         ['data' => $data, 'messages' => $messages] = $respBody;
 
-        $this->assertEquals($mock['response'], $respBody);
+        $this->assertSame($mock['response'], $respBody);
 
         $this->assertArrayHasKey('indicated', $data);
         $this->assertArrayHasKey('id', $data['indicated']);
@@ -50,11 +56,13 @@ class IndicatedControllerFailureTest extends AbstractWebTest
      */
     public function testDeleteIndicatedFailure(): void
     {
-        $mock = json_decode(\file_get_contents(__DIR__.'/Fixtures/testDeleteIndicatedFailure.json'), true);
+        $mock = json_decode(\file_get_contents(__DIR__ . '/Fixtures/testDeleteIndicatedFailure.json'), true);
 
         $this->client->xmlHttpRequest(
             'DELETE',
-            $this->router->generate('indicated_delete', ['id' => $mock['request']['id']]),
+            $this->router->generate('indicated_delete', [
+                'id' => $mock['request']['id'],
+            ]),
             [],
             []
         );

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\CustomSerializer;
-use Closure;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\Test\FormInterface;
@@ -40,9 +39,13 @@ class BaseController extends AbstractController
     {
         return JsonResponse::fromJsonString(
             $this->serializer->serialize(
-                ['data' => $data],
+                [
+                    'data' => $data,
+                ],
                 'json',
-                ['groups' => $groups]
+                [
+                    'groups' => $groups,
+                ]
             ),
             $statusCode
         );

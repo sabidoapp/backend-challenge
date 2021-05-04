@@ -4,10 +4,9 @@
 
 ## Apresentação
 
-Este repositório visa fornecer o ambiente necessário para seu desafio, utilizando o framework symfony 5.2.
+Este repositório contêm instruções para ter o ambiente necessário para seu desafio, utilizando o framework symfony 5.2.
 
-Existem ferramentas complementares para teste, formatação de código e busca por erros de implementação. O ambiente utiliza composer/docker/docker-compose.
-
+O ambiente utiliza composer/docker/docker-compose.
 
 ## Começando
 
@@ -28,6 +27,12 @@ Garanta que a porta `80` de sua máquina não esteja sendo utilizada e rode o co
 docker-compose up
 ```
 
+Para configurar o primeiro acesso a aplicação:
+
+```bash
+docker-compose exec app composer configure
+```
+
 Para popular o banco de dados com alguns registros, use o comando a seguir:
 
 ```bash
@@ -35,7 +40,6 @@ docker-compose exec app composer load-fixtures-db
 ```
 
 A partir daqui, está tudo configurado 🚀
-
 
 ## Testando
 
@@ -46,34 +50,16 @@ Já existe um script para rodar os testes da aplicação, utilizando o [phpunit]
 ```bash
 docker-compose exec app composer test
 ```
----
-
-Caso deseje rodar todas as checagens de qualidade de código, rode o comando abaixo:
-
-```bash
-docker-compose exec app composer grum
-```
-
-O comando abaixo serve para padronizar seu código com as PSR's predefinidas:
-
-```bash
-docker-compose exec app composer format
-```
-
-E por meio do stan você pode buscar por problemas que possam existir na sua implementação:
-
-```bash
-docker-compose exec app composer stan
-```
-
-Para checar em detalhes a cobertura de código da aplicação, após rodar o _grum_,
-abra o arquivo `build/coverage/index.html` em seu navegador.
-
 
 # Desafio
 
-Nós te fornecemos uma estrutura para começar, para se preocupar somente com a lógica do desafio.
+Nós te fornecemos uma estrutura para começar, para focar somente com a lógica do desafio.
+
+## Cenário
+
 Pense num banco com diversos itens a serem avaliados, divididos em categorias, aonde estes podem ser reavaliados após um período predeterminado.
+
+## Escopo
 
 Queremos que você implemente a lógica para voto online com algumas premissas:
 * Uma pessoa só pode votar uma vez por conjunto categoria/candidato.
@@ -85,9 +71,15 @@ Queremos que você implemente a lógica para voto online com algumas premissas:
 
 Qualquer alteração em banco de dados deve ser feita por migrations.
 
-## Avaliação
+# Avaliação
 
-Será avaliado a qualidade do código implementado e sua cobertura. Os pontos mais importantes são:
+A avaliação objetiva usaremos os comandos para avaliar parte de seu código:
+```bash
+composer phpstan
+composer phpmd
+```
+
+Consideraremos na avaliação qualitativa os pontos mais importantes:
 * todos as premissas atendidas
 * cobertura de testes unitários (seja criativo)
 * corrigir possíveis testes existentes com erro
@@ -96,10 +88,12 @@ Será avaliado a qualidade do código implementado e sua cobertura. Os pontos ma
 * praticidade na apresentação do desafio, o que envolve documentação de acesso aos recursos (endpoints, outputs?)
 * não se limite em usar quantas libs/tools opensource, ou mesmo em como persistir os dados
 
+## O que não será avaliado
+
+* Frontend (camada de visualização e templates).
+* Autenticação.
 
 ## Considerações finais
-
-Você não precisa de uma camada de visualização para concluir o desafio.
 
 Ao final de seu teste, abra uma PR para o repositório com as informações que julgar necessárias (recomendações, feedbacks).
 
