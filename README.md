@@ -4,7 +4,7 @@
 
 ## Apresentação
 
-Este repositório contêm instruções para ter o ambiente necessário para seu desafio, utilizando o framework symfony 5.2.
+Este repositório contêm instruções para ter o ambiente necessário para seu desafio, utilizando o framework symfony 5.3.
 
 O ambiente utiliza composer/docker/docker-compose.
 
@@ -12,7 +12,7 @@ O ambiente utiliza composer/docker/docker-compose.
 
 Clone este repositório, crie uma nova _branch_, como por exemplo `backend-challenge`.
 
-Em seu ambiente local, você só precisa ter o [Composer](https://getcomposer.org/download/), [Docker](https://www.docker.com/get-started) e o [Docker Compose](https://docs.docker.com/compose/) instalados.
+Em seu ambiente local, você só precisa ter o [Docker](https://www.docker.com/get-started) e o [Docker Compose](https://docs.docker.com/compose/) instalados.
 
 Para rodar o repositório, basta usar o comando abaixo no raiz do projeto. Ele ira configurar a aplicação.
 
@@ -75,8 +75,9 @@ Qualquer alteração em banco de dados deve ser feita por migrations.
 
 A avaliação objetiva usaremos os comandos para avaliar parte de seu código:
 ```bash
-composer phpstan
-composer phpmd
+bin/stan
+bin/ecs
+bin/md
 ```
 
 Consideraremos na avaliação qualitativa os pontos mais importantes:
@@ -94,6 +95,8 @@ Consideraremos na avaliação qualitativa os pontos mais importantes:
 * Autenticação.
 
 ## Considerações finais
+
+Fique a vontade para implementar melhorias ao processo e desafio (eventos assíncronos, serviços em background, etc).
 
 Ao final de seu teste, abra uma PR para o repositório com as informações que julgar necessárias (recomendações, feedbacks).
 
