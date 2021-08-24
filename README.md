@@ -1,8 +1,8 @@
-<div align="center">
-    <h1 align="center">Backend Challenge - Sabido</h1>
-</div>
+# ![Sabido](./public/sabido-logotype.svg)
 
 ## Apresentação
+
+Bem-vindo(a) ao desafio técnico da Sabido!
 
 Este repositório contêm instruções para ter o ambiente necessário para seu desafio, utilizando o framework symfony 5.3.
 
