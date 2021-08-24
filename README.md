@@ -10,7 +10,7 @@ O ambiente utiliza composer/docker/docker-compose.
 
 ## Começando
 
-Clone este repositório, crie uma nova _branch_, como por exemplo `backend-challenge`.
+Faça fork deste repositório e crie uma nova _branch_, como por exemplo `backend-challenge`.
 
 Em seu ambiente local, você só precisa ter o [Docker](https://www.docker.com/get-started) e o [Docker Compose](https://docs.docker.com/compose/) instalados.
 
@@ -98,6 +98,6 @@ Consideraremos na avaliação qualitativa os pontos mais importantes:
 
 Fique a vontade para implementar melhorias ao processo e desafio (eventos assíncronos, serviços em background, etc).
 
-Ao final de seu teste, abra uma PR para o repositório com as informações que julgar necessárias (recomendações, feedbacks).
+Ao final de seu teste, abra uma PR para o repositório do desafio com as informações que julgar necessárias (recomendações, feedbacks).
 
 Boa sorte!
