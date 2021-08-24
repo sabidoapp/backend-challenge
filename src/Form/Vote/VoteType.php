@@ -48,8 +48,8 @@ class VoteType extends AbstractType
     /**
      * Get block prefix.
      */
-    public function getBlockPrefix(): ?string
+    public function getBlockPrefix(): string
     {
-        return null;
+        return '';
     }
 }

@@ -17,8 +17,9 @@
 ###< symfony/web-server-bundle ###
 
 ###> phpunit/phpunit ###
-.php_cs.cache
+bin/phpunit
 /phpunit.xml
+.phpunit.cache
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 

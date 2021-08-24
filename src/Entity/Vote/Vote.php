@@ -23,9 +23,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(
  *     name="vote",
  *     options={
- *         "collate": "utf8_general_ci",
- *         "charset": "utf8",
- *         "engine": "InnoDB"
+ *         "collate"="utf8_general_ci",
+ *         "charset"="utf8",
+ *         "engine"="InnoDB"
  *     },
  *     indexes={
  *         @ORM\Index(name="vote_rating", columns={"rating"}),

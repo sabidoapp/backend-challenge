@@ -25,9 +25,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(
  *     name="indicated",
  *     options={
- *         "collate": "utf8_general_ci",
- *         "charset": "utf8",
- *         "engine": "InnoDB"
+ *         "collate"="utf8_general_ci",
+ *         "charset"="utf8",
+ *         "engine"="InnoDB"
  *     },
  *     indexes={
  *         @ORM\Index(name="indicated_name", columns={"name"}),
@@ -79,7 +79,7 @@ class Indicated
      *     mappedBy="indicated",
      *     fetch="EXTRA_LAZY"
      * )
-     * @ORM\OrderBy({"id": "desc"})
+     * @ORM\OrderBy({"id"="desc"})
      */
     private Collection $votes;
 
@@ -110,10 +110,6 @@ class Indicated
      */
     public function getCountVotes(): int
     {
-        if (empty($this->votes)) {
-            return 0;
-        }
-
         return $this->votes->count();
     }
 

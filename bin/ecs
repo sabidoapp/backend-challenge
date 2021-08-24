@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+exec "$(pwd)/bin/phpqa" ecs check src --clear-cache "$@"

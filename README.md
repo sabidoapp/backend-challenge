@@ -17,7 +17,7 @@ Em seu ambiente local, você só precisa ter o [Composer](https://getcomposer.or
 Para rodar o repositório, basta usar o comando abaixo no raiz do projeto. Ele ira configurar a aplicação.
 
 ```bash
-composer setup
+bin/composer setup
 ```
 
 Agora vamos deixar sua aplicação rodando utilizando o `docker-compose`.

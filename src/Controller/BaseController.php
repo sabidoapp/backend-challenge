@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\CustomSerializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
-use Symfony\Component\Form\Test\FormInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -52,7 +52,7 @@ class BaseController extends AbstractController
     }
 
     /**
-     * Clousure to render form errors.
+     * Render form errors.
      */
     protected function renderErrors(FormInterface $form, string $translatorDomain = 'main'): void
     {

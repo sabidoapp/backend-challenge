@@ -20,7 +20,7 @@ class ApiRequestSubscriber implements EventSubscriberInterface
     {
         // default converter json to form data request.
         $data = [];
-        if (0 === strpos($event->getRequest()->headers->get('Content-Type') ?: '', 'application/json')) {
+        if (0 === strpos($event->getRequest()->headers->get('Content-Type') ?? '', 'application/json')) {
             $data = json_decode($event->getRequest()->getContent(), true);
             $event->getRequest()->request->replace(is_array($data) ? $data : []);
             unset($data);

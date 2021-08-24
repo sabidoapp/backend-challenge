@@ -15,7 +15,7 @@ services:
       - challenge
 
   app:
-    image: sabido/core:latest
+    image: sabido/core:0.6.5
     volumes:
         - ./:/var/www/
         - ./docker/app/custom.php.ini:/usr/local/etc/php/conf.d/custom.ini

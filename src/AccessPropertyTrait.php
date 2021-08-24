@@ -15,6 +15,7 @@ trait AccessPropertyTrait
      */
     public function __get($name)
     {
+        /* @phpstan-ignore-next-line  */
         return $this->{$name};
     }
 
@@ -28,6 +29,7 @@ trait AccessPropertyTrait
      */
     public function __set($name, $value)
     {
+        /* @phpstan-ignore-next-line  */
         $this->{$name} = $value;
 
         return $this;

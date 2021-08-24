@@ -17,16 +17,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @property int        $id
  * @property Collection $votes
- * @property Collection $nominated
+ * @property Collection $indicated
  * @property string     $name
  * @property string     $abrev
  *
  * @ORM\Table(
  *     name="category",
  *     options={
- *         "collate": "utf8_general_ci",
- *         "charset": "utf8",
- *         "engine": "InnoDB"
+ *         "collate"="utf8_general_ci",
+ *         "charset"="utf8",
+ *         "engine"="InnoDB"
  *     },
  *     indexes={
  *         @ORM\Index(name="category_name", columns={"name"}),
@@ -58,20 +58,18 @@ class Category
      *     mappedBy="category",
      *     fetch="EXTRA_LAZY"
      * )
-     * @ORM\OrderBy({"id": "desc"})
+     * @ORM\OrderBy({"id"="desc"})
      */
     private Collection $votes;
 
     /**
-     * @var \Doctrine\ORM\PersistentCollection
-     *
      * @ORM\ManyToMany(
      *     targetEntity="App\Entity\Indicated\Indicated",
      *     cascade={"persist", "refresh"},
      *     mappedBy="categories",
      *     fetch="EXTRA_LAZY"
      * )
-     * @ORM\OrderBy({"id": "desc"})
+     * @ORM\OrderBy({"id"="desc"})
      */
     private Collection $indicated;
 
@@ -97,6 +95,7 @@ class Category
     public function __construct()
     {
         $this->votes = new ArrayCollection();
+        $this->indicated = new ArrayCollection();
     }
 
     /**
@@ -110,13 +109,9 @@ class Category
     /**
      * @Groups({"stats"})
      */
-    public function getCountNominated(): int
+    public function getCountindicated(): int
     {
-        if (empty($this->nominated)) {
-            return 0;
-        }
-
-        return $this->nominated->count();
+        return $this->indicated->count();
     }
 
     /**
@@ -124,10 +119,6 @@ class Category
      */
     public function getCountVotes(): int
     {
-        if (empty($this->votes)) {
-            return 0;
-        }
-
         return $this->votes->count();
     }
 }

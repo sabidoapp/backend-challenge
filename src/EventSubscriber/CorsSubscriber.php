@@ -30,10 +30,9 @@ class CorsSubscriber implements EventSubscriberInterface
 
             /** @var MethodNotAllowedHttpException $exception */
             $exception = $event->getThrowable();
-            if (method_exists($exception, 'getHeaders')) {
-                $headers = $exception->getHeaders();
-                $this->allowedMethod = isset($headers['Allow']) ? $headers['Allow'] : null;
-            }
+
+            $headers = $exception->getHeaders();
+            $this->allowedMethod = isset($headers['Allow']) ? $headers['Allow'] : null;
 
             $event->setResponse($response);
         }
@@ -41,7 +40,7 @@ class CorsSubscriber implements EventSubscriberInterface
 
     public function onKernelResponse(ResponseEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
@@ -78,7 +77,7 @@ class CorsSubscriber implements EventSubscriberInterface
 
         $allowMethods[] = $realMethod;
 
-        if (empty($realMethod)) {
+        if (is_null($realMethod)) {
             $allowMethods = array_merge(
                 $allowMethods,
                 [

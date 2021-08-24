@@ -7,17 +7,24 @@
         "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "composer/package-versions-deprecated": "1.11.99.2",
+        "doctrine/annotations": "^1.0",
+        "doctrine/doctrine-bundle": "^2.4",
+        "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/migrations": "^3.1",
+        "doctrine/orm": "^2.9",
+        "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/dotenv": "*",
         "symfony/flex": "*",
-        "symfony/form": "5.2",
+        "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/monolog-bundle": "*",
-        "symfony/orm-pack": "*",
+        "symfony/property-access": "5.3",
+        "symfony/property-info": "5.3",
+        "symfony/proxy-manager-bridge": "5.3",
         "symfony/security-bundle": "*",
         "symfony/serializer": "*",
-        "symfony/serializer-pack": "*",
         "symfony/translation": "*",
         "symfony/validator": "*",
         "symfony/yaml": "*"
@@ -27,7 +34,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "phpunit/phpunit": "^9",
         "symfony/debug-bundle": "*",
-        "symfony/phpunit-bridge": "^5.2",
+        "symfony/phpunit-bridge": "*",
         "symfony/stopwatch": "*",
         "symfony/var-dumper": "*",
         "symfony/web-profiler-bundle": "*"
@@ -76,20 +83,27 @@
         "load-fixtures-db": [
             "php bin/console doctrine:fixtures:load -n"
         ],
+        "permissions": [
+            "mkdir -p ./var/log && chmod -Rf 777 ./var/log",
+            "mkdir -p ./var/cache && chmod -Rf 777 ./var/cache",
+            "mkdir -p ./var/storage && chmod -Rf 777 ./var/storage",
+            "mkdir -p ./build && chmod -Rf 777 ./build"
+        ],
         "setup": [
-            "docker-compose pull",
-            "docker pull jakzal/phpqa:php7.4-alpine",
+            "@permissions",
             "@post-root-package-install"
         ],
         "configure": [
-            "@composer i --no-interaction --no-progress --no-scripts",
+            "COMPOSER_MEMORY_LIMIT=-1 composer i --no-interaction --no-progress --no-scripts",
             "@create-db",
             "@install-assets",
-            "@post-root-package-install"
+            "@post-root-package-install",
+            "@permissions"
         ],
         "test": "php -d xdebug.mode=coverage vendor/bin/phpunit -c phpunit.xml.dist --testdox -vvv",
-        "phpstan": "docker run --init -it --rm -v \"$(pwd):/var/www\" -w /var/www jakzal/phpqa:php7.4-alpine phpstan",
-        "phpmd": "docker run --init -it --rm -v \"$(pwd):/var/www\" -w /var/www jakzal/phpqa:php7.4-alpine phpmd src text cleancode,codesize,controversial,design,naming,unusedcode"
+        "stan": "bin/stan",
+        "md": "bin/md",
+        "ecs": "bin/ecs"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -97,7 +111,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "5.2"
+            "require": "5.3"
         },
         "incenteev-parameters": {
             "keep-outdated": true,

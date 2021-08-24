@@ -7,29 +7,45 @@
     backupStaticAttributes="false"
     colors="true"
     convertErrorsToExceptions="true"
-    convertNoticesToExceptions="false"
-    convertWarningsToExceptions="false"
-    processIsolation="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
     stopOnFailure="false">
     <php>
+        <ini name="error_reporting" value="32759" />
+        <ini name="memory_limit" value="-1" />
+        <ini name="max_execution_time" value="3600" />
+
+        <server name="SHELL_VERBOSITY" value="-1" />
+        <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
+
         <env name="KERNEL_CLASS" value="App\Kernel" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
+        <env name="SHELL_VERBOSITY" value="-1" />
         <env name="BOOTSTRAP_CLEAR_CACHE_ENV" value="test"/>
+
+        <env name="APP_ENV" value="test" force="true" />
+        <env name="APP_SECRET" value="challenge"/>
     </php>
     <testsuites>
-        <testsuite name="Application">
-            <directory suffix=".php">./tests/*</directory>
+        <testsuite name="Unit">
+            <directory suffix=".php">./tests/Unit/*</directory>
+        </testsuite>
+        <testsuite name="WebTest">
+            <directory suffix=".php">./tests/WebTest/*</directory>
         </testsuite>
     </testsuites>
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-        <listener class="Symfony\Bridge\PhpUnit\CoverageListener" />
     </listeners>
     <extensions>
         <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
     </extensions>
+    <logging>
+        <junit outputFile="build/junit.xml"/>
+    </logging>
     <coverage
-        cacheDirectory=".phpunit.cache/code-coverage"
+        cacheDirectory="var/cache/test/.phpunit.cache/code-coverage"
         processUncoveredFiles="true"
         ignoreDeprecatedCodeUnits="true">
         <include>
@@ -40,18 +56,19 @@
             <html outputDirectory="build/coverage" lowUpperBound="50" highLowerBound="90"/>
         </report>
         <exclude>
+            <directory>./src/DependencyInjection/</directory>
+            <directory>src/**Bundle.php</directory>
+            <directory>src/DataFixtures/</directory>
+            <directory>./src/Kernel.php</directory>
+            <directory>./src/Migrations</directory>
             <directory>./tests</directory>
             <directory>./vendor</directory>
             <directory>./public</directory>
             <directory>./config</directory>
             <directory>./var</directory>
             <directory>./bin</directory>
-            <directory>./src/Kernel.php</directory>
-            <directory>./src/Migrations</directory>
-            <directory>./src/DependencyInjection/</directory>
             <directory>./php_cs.php</directory>
-            <directory>src/**Bundle.php</directory>
-            <directory>src/DataFixtures/</directory>
+            <directory>./ecs.php</directory>
         </exclude>
     </coverage>
 </phpunit>

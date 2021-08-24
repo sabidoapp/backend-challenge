@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+mkdir -p build/ && chmod 775 $(pwd)/build/
+docker run --init -it --user "$(id -u):$(id -g)" --rm -v "$(pwd):/var/www" -w /var/www jakzal/phpqa:php7.4-alpine "$@"

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -19,7 +21,7 @@ class KernelSubscriber implements EventSubscriberInterface
      */
     public function onKernelResponse(ResponseEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
@@ -27,38 +29,9 @@ class KernelSubscriber implements EventSubscriberInterface
         $response = $event->getResponse();
 
         if ('application/json' === $response->headers->get('content_type')) {
-            /** @var Session $session */
-            $session = $request->getSession();
-            $sessionMessages = $session->getFlashbag()->all();
+            $data = $this->parserMessages($request, $response);
 
-            $content = !empty($response->getContent()) ? json_decode($response->getContent(), true) : [];
-
-            // Concat messages when already exists.
-            $messages = (isset($content['messages']))
-                ? array_merge($content['messages'], $sessionMessages)
-                : $sessionMessages;
-
-            $data = [
-                'data' => $content,
-                'messages' => $messages,
-            ];
-
-            if (isset($content['data'])) {
-                $data = $content;
-                $data['messages'] = $messages;
-            }
-
-            unset($content, $sessionMessages, $messages);
-
-            if (isset($data['data']['messages'])) {
-                unset($data['data']['messages']);
-            }
-
-            // Cleanup empty values and return parsed response.
-            $data = array_filter($data);
-            if (!empty($data)) {
-                $response->setContent((string) json_encode($data));
-            }
+            $response->setContent((string) json_encode($data));
             $event->setResponse($response);
         }
     }
@@ -76,5 +49,40 @@ class KernelSubscriber implements EventSubscriberInterface
                 ],
             ],
         ];
+    }
+
+    /**
+     * Parse session messages on API response.
+     */
+    private function parserMessages(Request $request, Response $response): array
+    {
+        /** @var Session $session */
+        $session = $request->getSession();
+        $sessionMessages = $session->getFlashBag()->all();
+
+        $content = is_string($response->getContent()) ? json_decode($response->getContent(), true) : [];
+
+        // Concat messages when already exists.
+        $messages = (isset($content['messages']))
+            ? array_merge($content['messages'], $sessionMessages)
+            : $sessionMessages;
+
+        $data = [
+            'data' => $content,
+            'messages' => $messages,
+        ];
+
+        if (isset($content['data'])) {
+            $data = $content;
+            $data['messages'] = $messages;
+        }
+
+        unset($content, $sessionMessages, $messages);
+
+        if (isset($data['data']['messages'])) {
+            unset($data['data']['messages']);
+        }
+
+        return array_filter($data);
     }
 }

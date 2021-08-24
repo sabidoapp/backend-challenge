@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+exec "$(pwd)/bin/phpqa" phpmd src html phpmd.xml --reportfile build/phpmd.html --ignore-violations-on-exit --strict
